@@ -1,0 +1,90 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-car',
+  templateUrl: './car.component.html',
+  styleUrls: ['./car.component.css']
+})
+export class CarComponent implements OnInit {
+
+name: string;
+speed: number;
+model: string;
+colors: Colors;
+options: string[];
+isEdit = false;
+
+  constructor() { }
+
+  ngOnInit() {
+    this.name = 'Audi';
+    this.speed = 235;
+    this.model = 'RS8';
+    this.colors = {
+      car: 'Белый',
+      salon: 'Черный',
+      wheels: 'Серебристый'
+    };
+    this.options = ['ABS', 'Автопилот', 'Авто Паркинг'];
+  }
+
+  showEdit() {
+    this.isEdit = !this.isEdit;
+  }
+
+  addOpt(option) {
+    this.options.unshift(option);
+    return false;
+  }
+
+  deleteOpt(option) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.options.length; i++)
+    {
+if (this.options[i] == option) {
+  this.options.splice(i, 1);
+  break;
+  }
+    }
+  }
+
+  carSelect(carName) {
+    if (carName == 'bmw') {
+    this.name = 'BMW';
+    this.speed = 280;
+    this.model = 'M5';
+    this.colors = {
+      car: 'Синий',
+      salon: 'Белый',
+      wheels: 'Серебристый'
+    };
+    this.options = ['Круиз Контроль', 'Авто Паркинг'];
+  } else if (carName == 'audi') {
+    this.name = 'Audi';
+    this.speed = 235;
+    this.model = 'RS8';
+    this.colors = {
+      car: 'Белый',
+      salon: 'Черный',
+      wheels: 'Серебристый'
+    };
+    this.options = ['ABS', 'Автопилот', 'Авто Паркинг'];
+  } else {
+    this.name = 'Mercedes';
+    this.speed = 180;
+    this.model = 'C180';
+    this.colors = {
+      car: 'Белый',
+      salon: 'Черный',
+      wheels: 'Серебристый'
+    };
+    this.options = ['ABS', 'Автопилот', 'Авто Паркинг'];
+  }
+  }
+}
+
+interface Colors {
+    car: string;
+    salon: string;
+    wheels: string;
+}
